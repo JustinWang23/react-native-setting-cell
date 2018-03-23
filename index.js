@@ -9,7 +9,7 @@
 'use strict';
 
 /* Import Module */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -17,6 +17,7 @@ import {
   StyleSheet,
   TouchableHighlight,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 /* Setting Cell */
 class SettingCell extends Component {
