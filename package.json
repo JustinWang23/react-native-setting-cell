@@ -1,0 +1,24 @@
+{
+  "name": "react-native-setting-cell",
+  "version": "1.0.0",
+  "description": "封装常见的设置栏Cell",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinWang23/react-native-setting-cell.git"
+  },
+  "keywords": [
+    "react-native",
+    "setting",
+    "cell"
+  ],
+  "author": "JustinWang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustinWang23/react-native-setting-cell/issues"
+  },
+  "homepage": "https://github.com/JustinWang23/react-native-setting-cell#readme"
+}
