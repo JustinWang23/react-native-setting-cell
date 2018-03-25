@@ -42,11 +42,61 @@ class SettingCell extends Component {
   }
 
   render() {
+
+    const { text, subText, icon } from this.props;
+    const { onPress } from this.props;
+
+    let iconView;
+    if (icon) {
+      iconView = (
+        <Image
+          style={styles.icon}
+          source={icon}
+        />
+      )
+    }
+
+    let subTextView;
+    if (subText) {
+      subTextView = (
+        <Text style={styles.sub-text}>
+          {subText}
+        </Text>
+      )
+    }
+
+    let content;
+    if (onPress) {
+      content = (
+        <TouchableHighlight
+          onPress={onPress}
+          style={styles.container}
+        >
+
+        </TouchableHighlight>
+      )
+    } else {
+      content = {
+        <View style={styles.container}>
+          
+        </View>
+      }
+    }
+
     return (
       <View />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+
+  },
+  icon: {
+
+  },
+})
 
 /* Export Module */
 module.exports = SettingCell;
