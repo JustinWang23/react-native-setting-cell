@@ -6,7 +6,6 @@
  *
  * @Author: JustinWang
  */
-'use strict';
 
 /* Import Module */
 import React, { Component } from 'react';
@@ -39,7 +38,7 @@ class SettingCell extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     subText: PropTypes.string,
-    icon: PropTypes.string,
+    icon: PropTypes.number,
     onPress: PropTypes.func,
   }
 
@@ -77,20 +76,21 @@ class SettingCell extends Component {
       content = (
         <TouchableHighlight
           onPress={onPress}
-          style={[styles.container, styles.row]}
         >
-          <View style={[styles.left_area, styles.row]}>
-            {iconView}
-            <Text style={styles.text}>
-              {text}
-            </Text>
-          </View>
-          <View style={[styles.right_area, styles.row]}>
-            {subTextView}
-            <Image
-              style={styles.right_arrow}
-              source={require('./imgs/right_arrow.png')}
-            />
+          <View style={[styles.container, styles.row]}>
+            <View style={[styles.left_area, styles.row]}>
+              {iconView}
+              <Text style={styles.text}>
+                {text}
+              </Text>
+            </View>
+            <View style={[styles.right_area, styles.row]}>
+              {subTextView}
+              <Image
+                style={styles.right_arrow}
+                source={require('./imgs/right_arrow.png')}
+              />
+            </View>
           </View>
         </TouchableHighlight>
       );
@@ -107,7 +107,7 @@ class SettingCell extends Component {
             {subTextView}
             <Image
               style={styles.right_arrow}
-              source={require('../assets/right_arrow.png')}
+              source={require('./imgs/right_arrow.png')}
             />
           </View>
         </View>
@@ -115,7 +115,9 @@ class SettingCell extends Component {
     }
 
     return (
-      {content}
+      <View>
+        {content}
+      </View>
     );
   }
 }
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   icon: {
     height: ICON_HEIGHT,
     width: ICON_WIDTH,
-    marginRight: 15,
+    marginRight: 10,
     resizeMode: 'contain',
   },
   text: {
