@@ -19,6 +19,13 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
+// Const
+const CELL_HEIGHT = 50;
+const ARROW_HEIGHT = 12;
+const ARROW_WIDTH = 12;
+const ICON_HEIGHT = 22;
+const ICON_WIDTH = 22;
+
 /* Setting Cell */
 class SettingCell extends Component {
   // Constructor Function
@@ -43,8 +50,8 @@ class SettingCell extends Component {
 
   render() {
 
-    const { text, subText, icon } from this.props;
-    const { onPress } from this.props;
+    const { text, subText, icon } = this.props;
+    const { onPress } = this.props;
 
     let iconView;
     if (icon) {
@@ -53,16 +60,16 @@ class SettingCell extends Component {
           style={styles.icon}
           source={icon}
         />
-      )
+      );
     }
 
     let subTextView;
     if (subText) {
       subTextView = (
-        <Text style={styles.sub-text}>
+        <Text style={styles.sub_text}>
           {subText}
         </Text>
-      )
+      );
     }
 
     let content;
@@ -70,33 +77,86 @@ class SettingCell extends Component {
       content = (
         <TouchableHighlight
           onPress={onPress}
-          style={styles.container}
+          style={[styles.container, styles.row]}
         >
-
+          <View style={[styles.left_area, styles.row]}>
+            {iconView}
+            <Text style={styles.text}>
+              {text}
+            </Text>
+          </View>
+          <View style={[styles.right_area, styles.row]}>
+            {subTextView}
+            <Image
+              style={styles.right_arrow}
+              source={require('./imgs/right_arrow.png')}
+            />
+          </View>
         </TouchableHighlight>
-      )
+      );
     } else {
-      content = {
-        <View style={styles.container}>
-          
+      content = (
+        <View style={[styles.container, styles.row]}>
+          <View style={[styles.left_area, styles.row]}>
+            {iconView}
+            <Text style={styles.text}>
+              {text}
+            </Text>
+          </View>
+          <View style={[styles.right_area, styles.row]}>
+            {subTextView}
+            <Image
+              style={styles.right_arrow}
+              source={require('../assets/right_arrow.png')}
+            />
+          </View>
         </View>
-      }
+      );
     }
 
     return (
-      <View />
+      {content}
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-
+    height: CELL_HEIGHT,
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  left_area: {
+    marginLeft: 20,
+    alignItems: 'center',
+  },
+  right_area: {
+    marginRight: 10,
+    alignItems: 'center',
   },
   icon: {
-
+    height: ICON_HEIGHT,
+    width: ICON_WIDTH,
+    marginRight: 15,
+    resizeMode: 'contain',
   },
-})
+  text: {
+    fontSize: 14,
+    color: '#000',
+  },
+  sub_text: {
+    color: '#b3b3b3',
+  },
+  right_arrow: {
+    height: ARROW_HEIGHT,
+    width: ARROW_WIDTH,
+    marginLeft: 15,
+    resizeMode: 'contain',
+  },
+});
 
 /* Export Module */
 module.exports = SettingCell;
