@@ -1,10 +1,10 @@
 /**
  * react-native-setting-cell
- *
  * 封装RN的Cell组件，用于设置页面的设置项及个人信息页的信息项。
  * a cell component for setting page or info page.
  *
- * @Author: JustinWang
+ * Created by JustinWang.
+ * Copyright 2018 JustinWang.
  */
 
 /* Import Module */
@@ -13,6 +13,7 @@ import {
   View,
   Text,
   Image,
+  Switch,
   StyleSheet,
   TouchableHighlight,
 } from 'react-native';
@@ -24,33 +25,44 @@ const ARROW_HEIGHT = 12;
 const ARROW_WIDTH = 12;
 const ICON_HEIGHT = 22;
 const ICON_WIDTH = 22;
+const ARROW_IMG = require('./imgs/right_arrow.png');
 
 /* Setting Cell */
 class SettingCell extends Component {
-  // Constructor Function
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   // Prop Types
   static propTypes = {
     text: PropTypes.string.isRequired,
+    mode: PropTypes.oneOf(['Text', 'Switch']),
     subText: PropTypes.string,
+    switchValue: PropTypes.bool,
     icon: PropTypes.number,
     onPress: PropTypes.func,
+    onChange: PropTypes.func,
   }
 
   // Default Props
   static defaultProps = {
-    text: 'SettingText',
+    mode: 'Text',
+    switchValue: false,
+  }
+
+  // Constructor Function
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      switchValue : this.props.switchValue,
+    };
   }
 
   render() {
-
-    const { text, subText, icon } = this.props;
-    const { onPress } = this.props;
+    const {
+      text,
+      mode,
+      subText,
+      icon,
+    } = this.props;
+    const { onPress, onChange } = this.props;
 
     let iconView;
     if (icon) {
@@ -63,12 +75,26 @@ class SettingCell extends Component {
     }
 
     let subTextView;
-    if (subText) {
+    if (mode === 'Switch') {
       subTextView = (
-        <Text style={styles.sub_text}>
-          {subText}
-        </Text>
+        <Switch
+          value={this.state.switchValue}
+          onValueChange={(value) => {
+            this.setState({
+              switchValue: value,
+            });
+            onChange(value);
+          }}
+        />
       );
+    } else {
+      if (subText) {
+        subTextView = (
+          <Text style={styles.sub_text}>
+            {subText}
+          </Text>
+        );
+      }
     }
 
     let content;
@@ -88,7 +114,7 @@ class SettingCell extends Component {
               {subTextView}
               <Image
                 style={styles.right_arrow}
-                source={require('./imgs/right_arrow.png')}
+                source={ARROW_IMG}
               />
             </View>
           </View>
@@ -105,10 +131,6 @@ class SettingCell extends Component {
           </View>
           <View style={[styles.right_area, styles.row]}>
             {subTextView}
-            <Image
-              style={styles.right_arrow}
-              source={require('./imgs/right_arrow.png')}
-            />
           </View>
         </View>
       );
