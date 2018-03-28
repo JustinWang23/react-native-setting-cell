@@ -68,7 +68,7 @@ class SettingCell extends Component {
     if (icon) {
       iconView = (
         <Image
-          style={styles.icon}
+          style={[styles.icon, styles.image_contain]}
           source={icon}
         />
       );
@@ -113,7 +113,7 @@ class SettingCell extends Component {
             <View style={[styles.right_area, styles.row]}>
               {subTextView}
               <Image
-                style={styles.right_arrow}
+                style={[styles.right_arrow, styles.image_contain]}
                 source={ARROW_IMG}
               />
             </View>
@@ -131,6 +131,7 @@ class SettingCell extends Component {
           </View>
           <View style={[styles.right_area, styles.row]}>
             {subTextView}
+            <View style={styles.right_arrow} />
           </View>
         </View>
       );
@@ -165,10 +166,9 @@ const styles = StyleSheet.create({
     height: ICON_HEIGHT,
     width: ICON_WIDTH,
     marginRight: 10,
-    resizeMode: 'contain',
   },
   text: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#000',
   },
   sub_text: {
@@ -177,7 +177,9 @@ const styles = StyleSheet.create({
   right_arrow: {
     height: ARROW_HEIGHT,
     width: ARROW_WIDTH,
-    marginLeft: 15,
+    marginLeft: 10,
+  },
+  image_contain: {
     resizeMode: 'contain',
   },
 });
