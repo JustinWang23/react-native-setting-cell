@@ -4,32 +4,73 @@
 
 ![介绍GIF](./intro.gif)
 
-## 使用
+### 安装
 
-### 1.纯文本
+安装npm依赖
+
+```
+npm install react-native-setting-cell --save
+```
+
+### 使用
+
+在文件中引入setting-cell
+
+```
+import SettingCell from 'react-native-setting-cell'
+```
+
+* 纯文本的Cell
 
 ```
 <SettingCell text='标题' subText='文本'/>
 ```
 
-### 2.带图标的文本
+* 带图标的Cell
 
 ```
 <SettingCell text='标题' icon={require('./icon/home.png')}/>
 ```
 
-### 3.带跳转的文本
+* 带跳转的的Cell
 
 ```
 <SettingCell text='标题' onPress={()=>{alert(1)}}/>
 ```
 
-### 4.带开关的文本
+* 带开关的Cell
 
 ```
 <SettingCell text='标题' mode='Switch' onChange={(val) => {alert(val)}}/>
 ```
 
-## Todo
+* 修改文本的样式
 
-* 增加各个组件的样式修改
+```
+<SettingCell text='标题' textStyle={{color:'#baba00', fontSize:20}} subText='文本' subTextStyle={{fontSize:16, color:'#000'}}/>
+```
+
+* 修改图标的样式
+
+```
+<SettingCell text='标题' icon={require('./icon/home.png')} iconStyle={{width:100}}/>
+```
+
+### 属性
+
+| 名称 | 类型 | 说明 |
+| -----|:----:| ----:|
+| text    | String    | 左侧文字    |
+| textStyle    | Object    |   左侧文字的样式  |
+| icon    | Number    |   图标的图片地址  |
+| iconStyle    | Object    |   图标的样式  |
+| mode    | String    |  Text 或者 Switch   |
+| subText    | String    |  右侧文字   |
+| subTextStyle    | Object    |   右侧文字的样式  |
+| switchValue    | Bool    |   Switch的状态,默认为false  |
+| onPress    | Function    |   Cell点击后的事件  |
+| onChange    | Function    |   Switch切换后的事件  |
+
+### Todo
+
+* ~~增加各个组件的样式修改~~

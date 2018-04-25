@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-// Const
+// Constants
 const CELL_HEIGHT = 50;
 const ARROW_HEIGHT = 12;
 const ARROW_WIDTH = 12;
@@ -32,10 +32,13 @@ class SettingCell extends Component {
   // Prop Types
   static propTypes = {
     text: PropTypes.string.isRequired,
+    textStyle: Text.propTypes.style,
     mode: PropTypes.oneOf(['Text', 'Switch']),
     subText: PropTypes.string,
+    subTextStyle: Text.propTypes.style,
     switchValue: PropTypes.bool,
     icon: PropTypes.number,
+    iconStyle: Image.propTypes.style,
     onPress: PropTypes.func,
     onChange: PropTypes.func,
   }
@@ -55,6 +58,7 @@ class SettingCell extends Component {
     };
   }
 
+  // Render Dom
   render() {
     const {
       text,
@@ -64,16 +68,18 @@ class SettingCell extends Component {
     } = this.props;
     const { onPress, onChange } = this.props;
 
+    // Create Icon Area
     let iconView;
     if (icon) {
       iconView = (
         <Image
-          style={[styles.icon, styles.image_contain]}
+          style={[styles.icon, styles.image_contain, this.props.iconStyle]}
           source={icon}
         />
       );
     }
 
+    // Create Switch or subText Area
     let subTextView;
     if (mode === 'Switch') {
       subTextView = (
@@ -90,13 +96,14 @@ class SettingCell extends Component {
     } else {
       if (subText) {
         subTextView = (
-          <Text style={styles.sub_text}>
+          <Text style={[styles.sub_text, this.props.subTextStyle]}>
             {subText}
           </Text>
         );
       }
     }
 
+    // Create Container Area
     let content;
     if (onPress) {
       content = (
@@ -106,7 +113,7 @@ class SettingCell extends Component {
           <View style={[styles.container, styles.row]}>
             <View style={[styles.left_area, styles.row]}>
               {iconView}
-              <Text style={styles.text}>
+              <Text style={[styles.text, this.props.textStyle]}>
                 {text}
               </Text>
             </View>
@@ -125,7 +132,7 @@ class SettingCell extends Component {
         <View style={[styles.container, styles.row]}>
           <View style={[styles.left_area, styles.row]}>
             {iconView}
-            <Text style={styles.text}>
+            <Text style={[styles.text, this.props.textStyle]}>
               {text}
             </Text>
           </View>
@@ -145,6 +152,7 @@ class SettingCell extends Component {
   }
 }
 
+/* StyleSheet */
 const styles = StyleSheet.create({
   container: {
     height: CELL_HEIGHT,

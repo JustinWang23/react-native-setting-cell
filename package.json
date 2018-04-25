@@ -1,7 +1,7 @@
 {
   "name": "react-native-setting-cell",
-  "version": "1.0.0",
-  "description": "封装常见的设置栏Cell",
+  "version": "1.0.2",
+  "description": "a cell component for setting page or info page. 封装常见的设置栏Cell",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
